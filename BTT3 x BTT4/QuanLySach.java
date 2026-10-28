@@ -25,6 +25,7 @@ public class QuanLySach {
 
         System.out.print("Nhap so luong: ");
         int soLuong = Integer.parseInt(scanner.nextLine());
+        scanner.close();
 
         // BÀI 4(BTT4): Dùng switch chọn loại sách
         System.out
@@ -99,7 +100,5 @@ public class QuanLySach {
         System.out.println("Bai 2(BTT4) - Phan loai gia: " + phanLoaiGia);
         System.out.println("Bai 3(BTT4) - Ton kho: " + phanLoaiTonKho);
         System.out.println("========================================");
-
-        scanner.close();
     }
 }
