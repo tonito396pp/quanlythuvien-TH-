@@ -1,25 +1,82 @@
 package BTT7;
 
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//Yêu cầu 1
 class Sach {
-    public String maSach;
-    public String tieuDe;
-    public String tacGia;
-    public int namXuatBan;
-    public int soLuong;
+    // Yêu cầu 1 (BTT8)
+    private String maSach;
+    private String tieuDe;
+    private String tacGia;
+    private int namXuatBan;
+    private int soLuong;
 
+    public Sach() {
+    }
+
+    // Yêu cầu 4 (BTT8)
     public Sach(String maSach, String tieuDe, String tacGia, int namXuatBan, int soLuong) {
         this.maSach = maSach;
         this.tieuDe = tieuDe;
         this.tacGia = tacGia;
-        this.namXuatBan = namXuatBan;
-        this.soLuong = soLuong;
+        setNamXuatBan(namXuatBan);
+        setSoLuong(soLuong);
     }
 
-    // Yêu cầu 2
+    // Yêu cầu 2 (BTT8)
+    public String getMaSach() {
+        return maSach;
+    }
+
+    public void setMaSach(String maSach) {
+        this.maSach = maSach;
+    }
+
+    public String getTieuDe() {
+        return tieuDe;
+    }
+
+    public void setTieuDe(String tieuDe) {
+        this.tieuDe = tieuDe;
+    }
+
+    public String getTacGia() {
+        return tacGia;
+    }
+
+    public void setTacGia(String tacGia) {
+        this.tacGia = tacGia;
+    }
+
+    public int getNamXuatBan() {
+        return namXuatBan;
+    }
+
+    // Yêu cầu 3 (BTT8): Kiểm tra namXuatBan hợp lệ (> 0 và <= năm hiện tại)
+    public void setNamXuatBan(int namXuatBan) {
+        int currentYear = Year.now().getValue();
+        if (namXuatBan > 0 && namXuatBan <= currentYear) {
+            this.namXuatBan = namXuatBan;
+        } else {
+            System.out.println(">> Canh bao: Nam xuat ban (" + namXuatBan + ") khong hop le! (Phai > 0 va <= " + currentYear + ")");
+        }
+    }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    // Yêu cầu 3 (BTT8): Kiểm tra soLuong không âm (>= 0)
+    public void setSoLuong(int soLuong) {
+        if (soLuong >= 0) {
+            this.soLuong = soLuong;
+        } else {
+            System.out.println(">> Canh bao: So luong (" + soLuong + ") khong hop le! (Khong duoc am)");
+        }
+    }
+
+    // Yêu cầu 2 (BTT7)
     public void hienThiThongTin() {
         System.out.println("Ma sach: " + maSach);
         System.out.println("Tieu de: " + tieuDe);
@@ -30,7 +87,7 @@ class Sach {
     }
 }
 
-// Yêu cầu 4(BTT7)
+// Yêu cầu 4 (BTT7)
 public class CTQLsach {
 
     public static void main(String[] args) {
@@ -91,7 +148,7 @@ public class CTQLsach {
                     String maTim = sc.nextLine().trim();
                     boolean timThay = false;
                     for (Sach s : dsSach) {
-                        if (s.maSach.equalsIgnoreCase(maTim)) {
+                        if (s.getMaSach().equalsIgnoreCase(maTim)) {
                             System.out.println("=> Da tim thay sach:");
                             s.hienThiThongTin();
                             timThay = true;
@@ -106,7 +163,7 @@ public class CTQLsach {
                 case 4:
                     int tongSoLuong = 0;
                     for (Sach s : dsSach) {
-                        tongSoLuong += s.soLuong;
+                        tongSoLuong += s.getSoLuong();
                     }
                     System.out.println("=> Tong so luong sach hien co trong thu vien: " + tongSoLuong);
                     break;
