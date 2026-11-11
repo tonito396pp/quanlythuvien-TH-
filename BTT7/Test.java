@@ -1,6 +1,6 @@
 package BTT7;
 
-// Yêu cầu 3
+// Yêu cầu 3(BTT7)
 public class Test {
 
     public static void main(String[] args) {
